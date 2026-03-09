@@ -15,6 +15,12 @@ func (p *PowerPMAC) GetDesiredPosition(id int) (float64, error) {
 	return p.RequestFloat(command)
 }
 
+// Gets the home offset position
+func (p *PowerPMAC) GetHomePosition(id int) (float64, error) {
+	command := fmt.Sprintf("Motor[%d].HomePos", id)
+	return p.RequestFloat(command)
+}
+
 // Gets the instantaneous following error
 func (p *PowerPMAC) GetPositionError(id int) (float64, error) {
 	command := fmt.Sprintf("Motor[%d].PosError", id)
