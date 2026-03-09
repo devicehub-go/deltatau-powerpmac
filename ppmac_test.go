@@ -2,18 +2,30 @@ package ppmac_test
 
 import (
 	"fmt"
+	"os"
+	"strconv"
 	"testing"
 	"time"
 
 	ppmac "github.com/devicehub-go/deltatau-powerpmac"
+	"github.com/joho/godotenv"
 )
 
 func TestPowerPMAC_Getters(t *testing.T) {
+	err := godotenv.Load()
+	if err != nil {
+		t.Fatal("Error loading .env file")
+	}
+	port, err := strconv.Atoi(os.Getenv("PPMAC_PORT"))
+	if err != nil {
+		t.Fatalf("Invalid port, got %s", os.Getenv("PPMAC_PORT"))
+	}
+
 	drive := ppmac.New(ppmac.Options{
-		Host:     "",
-		Port:     0,
-		Username: "",
-		Password: "",
+		Host:     os.Getenv("PPMAC_HOST"),
+		Port:     port,
+		Username: os.Getenv("PPMAC_USER"),
+		Password: os.Getenv("PPMAC_PSWD"),
 		Timeout:  10 * time.Second,
 	})
 
