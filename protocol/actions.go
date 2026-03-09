@@ -34,7 +34,7 @@ func (p *PowerPMAC) JogRelative(id int, distance float64) error {
 
 // Start an absolute jog for the specified coordinate system
 func (p *PowerPMAC) MoveAxisAbsolute(coord int, axis string, target float64) error {
-	command := fmt.Sprintf("&%d abs linear %s%f", coord, axis, target)
+	command := fmt.Sprintf("&%dcx%s%f", coord, axis, target)
 	_, err := p.Request(command)
 	return err
 }
