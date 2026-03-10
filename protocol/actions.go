@@ -27,7 +27,7 @@ func motorIDs(ids []int) (string, error) {
 }
 
 // Start/Stop an indefinite jogging
-func (p *PowerPMAC) Jog(mode JogMode, ids ...int) error {
+func (p *PowerPMAC) Jog(ids []int, mode JogMode) error {
 	m, err := motorIDs(ids)
 	if err != nil {
 		return err
@@ -37,7 +37,7 @@ func (p *PowerPMAC) Jog(mode JogMode, ids ...int) error {
 }
 
 // Starts an absolute jog to a specific position
-func (p *PowerPMAC) JogAbsolute(position float64, ids ...int) error {
+func (p *PowerPMAC) JogAbsolute(ids []int, position float64) error {
 	m, err := motorIDs(ids)
 	if err != nil {
 		return err
@@ -48,7 +48,7 @@ func (p *PowerPMAC) JogAbsolute(position float64, ids ...int) error {
 
 // Starts a relative jog by a specified distance from the current
 // commanded position
-func (p *PowerPMAC) JogRelative(distance float64, ids ...int) error {
+func (p *PowerPMAC) JogRelative(ids []int, distance float64) error {
 	m, err := motorIDs(ids)
 	if err != nil {
 		return err
@@ -64,7 +64,7 @@ func (p *PowerPMAC) MoveAxisAbsolute(coord int, axis string, target float64) err
 }
 
 // Starts a homing-search move to establish an absolute position reference
-func (p *PowerPMAC) Home(ids ...int) error {
+func (p *PowerPMAC) Home(ids []int) error {
 	m, err := motorIDs(ids)
 	if err != nil {
 		return err
@@ -74,7 +74,7 @@ func (p *PowerPMAC) Home(ids ...int) error {
 }
 
 // Establishes the current position as zero without motion
-func (p *PowerPMAC) ZeroMoveHome(ids ...int) error {
+func (p *PowerPMAC) ZeroMoveHome(ids []int) error {
 	m, err := motorIDs(ids)
 	if err != nil {
 		return err
@@ -84,7 +84,7 @@ func (p *PowerPMAC) ZeroMoveHome(ids ...int) error {
 }
 
 // Immediately disables servo control, opens the loop, and cuts power
-func (p *PowerPMAC) Kill(ids ...int) error {
+func (p *PowerPMAC) Kill(ids []int) error {
 	m, err := motorIDs(ids)
 	if err != nil {
 		return err
@@ -94,7 +94,7 @@ func (p *PowerPMAC) Kill(ids ...int) error {
 }
 
 // Engaging the brake and waiting before disabling power
-func (p *PowerPMAC) DelayedKill(ids ...int) error {
+func (p *PowerPMAC) DelayedKill(ids []int) error {
 	m, err := motorIDs(ids)
 	if err != nil {
 		return err
