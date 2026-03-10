@@ -59,13 +59,7 @@ func (p *PowerPMAC) JogRelative(ids []int, distance float64) error {
 
 // Start an absolute jog for the specified coordinate system
 func (p *PowerPMAC) JogAxisAbsolute(coord int, axis string, position float64) error {
-	_, err := p.Request(fmt.Sprintf("&%d abs cx %s%f", coord, axis, position))
-	return err
-}
-
-// Start a relative jog for the specified coordinate system
-func (p *PowerPMAC) JogAxisRelative(coord int, axis string, distance float64) error {
-	_, err := p.Request(fmt.Sprintf("&%d abs cx %s%f", coord, axis, distance))
+	_, err := p.Request(fmt.Sprintf("&%d cx %s%f", coord, axis, position))
 	return err
 }
 
