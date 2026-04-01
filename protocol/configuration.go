@@ -18,7 +18,7 @@ func (p *PowerPMAC) SetJogSpeed(id int, speed float64) error {
 }
 
 // Gets the maximum velocity for jogging moves (units/ms)
-func (p *PowerPMAC) GetJogSpeed(id int, speed float64) (float64, error) {
+func (p *PowerPMAC) GetJogSpeed(id int) (float64, error) {
 	command := fmt.Sprintf("Motor[%d].JogSpeed", id)
 	return p.RequestFloat(command)
 }
